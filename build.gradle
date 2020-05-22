@@ -1,20 +1,14 @@
 plugins {
+    id 'java'
     id 'org.springframework.boot' version '2.2.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
 repositories {
-    maven {
-        url "http://dev-brm.cs.kadaster.nl/artifactory/mvn-registry/"
-    }
-    maven {
-        url "http://dev-brm.cs.kadaster.nl/artifactory/gradle-registry/"
-    }
+    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
@@ -22,6 +16,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 test {
