@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  webapp:
+    image: spring-boot-example
+    build:
+      context: .
+      dockerfile: Dockerfile
