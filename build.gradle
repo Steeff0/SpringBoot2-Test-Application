@@ -5,6 +5,8 @@ plugins {
 }
 
 group = 'com.example'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 repositories {
     mavenLocal()
@@ -12,13 +14,18 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 test {
     useJUnitPlatform()
+}
+
+bootJar {
+    baseName = 'spring-boot-example'
+    version =  '0.0.1'
 }
