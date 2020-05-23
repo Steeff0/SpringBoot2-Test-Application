@@ -1,15 +1,13 @@
 FROM gradle:5.6.4-jdk11 AS builder
-
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} /app/
-
+COPY . /app
 RUN set -x \
     && cd /app \
-    && mkdir -p dependency \
-    && (cd dependency; jar -xf ../*.jar)
+    && ./gradlew clean bootJar \
+    && mkdir -p build/dependency \
+    && (cd build/dependency; jar -xf ../libs/*.jar)
 
 FROM openjdk:8-jre-alpine
-ARG DEPENDENCY=/app/dependency
+ARG DEPENDENCY=/app/build/dependency
 RUN set -x \
     && addgroup -S spring \
     && adduser -S spring -G spring \
