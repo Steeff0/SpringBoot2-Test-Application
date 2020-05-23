@@ -1,31 +1,25 @@
 plugins {
+    // Fix local error 'the trustAnchors parameter must be non-empty'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version "1.0.9.RELEASE"
     id 'java'
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 group = 'com.example'
 sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-web"
-    testCompile('org.springframework.boot:spring-boot-starter-test') {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 test {
     useJUnitPlatform()
-}
-
-bootJar {
-    baseName = 'spring-boot-example'
-    version =  '0.0.1'
 }
