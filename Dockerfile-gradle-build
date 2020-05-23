@@ -1,10 +1,10 @@
-FROM openjdk:8-jdk-alpine AS builder
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} /app/
+FROM gradle:5.6.4-jdk8 AS builder
+COPY . /app
 RUN set -x \
     && cd /app \
+    && ./gradlew clean bootJar \
     && mkdir -p build/dependency \
-    && (cd build/dependency; jar -xf ../../*.jar)
+    && (cd build/dependency; jar -xf ../libs/*.jar)
 
 FROM openjdk:8-jre-alpine
 ARG DEPENDENCY=/app/build/dependency
