@@ -1,16 +1,22 @@
 package com.example.restservice.pojo;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Getter
+@Setter
 public class Book {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private @Setter(AccessLevel.PROTECTED) Long id;
     private String title;
     private String author;
 
@@ -26,17 +32,5 @@ public class Book {
         return String.format(
                 "Customer[id=%d, firstName='%s', lastName='%s']",
                 id, title, author);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
     }
 }
