@@ -1,7 +1,2 @@
 .idea
-.gradle
 *.iml
-
-gradle-app.setting
-!gradle-wrapper.jar
-.gradletasknamecache
