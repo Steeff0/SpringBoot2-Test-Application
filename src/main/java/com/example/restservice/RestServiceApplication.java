@@ -14,14 +14,4 @@ public class RestServiceApplication {
         SpringApplication.run(RestServiceApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner demo(BookRepository repository) {
-        return (args) -> {
-            // save a few customers
-            repository.save(new Book("Lord of the Rings", "J.R.R. Tolkien"));
-            repository.save(new Book("Sword of Truth", "Terry Goodkind"));
-            repository.save(new Book("Harry Potter", "J.K. Rowling"));
-        };
-    }
-
 }
