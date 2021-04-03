@@ -7,3 +7,33 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8090:8080
+    links:
+      - "database"
+
+  database:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: books
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@kadaster.nl
+      PGADMIN_DEFAULT_PASSWORD: test
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8091:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    links:
+      - "database:pgsql-server"
+
+volumes:
+  database-data:
+  pgadmin-data:

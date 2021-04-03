@@ -1,13 +1,11 @@
 package com.example.restservice.repository;
 
 import com.example.restservice.pojo.Book;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "book", path = "book")
-public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
+public interface BookRepository extends CrudRepository<Book, Long> {
 
     List<Book> findByTitle(String title);
 }
